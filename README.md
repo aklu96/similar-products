@@ -1,9 +1,7 @@
-# Project Name
-
-Fjords by LibraFX
+# Fjords by LibraFX
 
 > HackReactors F.E.C. project conducted by team LibraFX: Alex Klyuev, Alex Yu, Samuel Bjorklund, Zachary Cush.
-Recreation of Patagonia's Fjord Flannel Jacket item page featuring the selected item carousel, detailed overview, similar products, and customer reviews; 
+Recreation of Patagonia's Fjord Flannel Jacket item page featuring the selected item carousel, detailed overview, similar products, and customer reviews;
 handled by ZC, AY, AK, and SB respectively. Project designed as a non-functional Full-stack application using Node.JS, React, and a simulated Mongo database.
 Implemented in a Service-Oriented Architecture.
 
@@ -25,15 +23,17 @@ Implemented in a Service-Oriented Architecture.
 
 ## Requirements
 
-- Node
+An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
+
+- Node 6.13.0
 - Express
 - Mongoose
 - React
-- Bluebird
+- Bluebird (tbd)
 - Webpack
 - Babel
-- Enzyme/Jest
-- CircleCI
+- Enzyme/Jest (tbd)
+- CircleCI (tbd)
 
 ## Development
 

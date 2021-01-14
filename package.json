@@ -1,9 +1,9 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
-  "license": "",
+  "name": "Fjords",
+  "version": "0.1.0",
+  "description": "Recreation of Patagonia item page website",
+  "author": "LibraFX",
+  "license": "MIT",
   "engines": {
     "node": ">=6.13.0"
   },
