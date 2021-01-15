@@ -4,7 +4,14 @@ mongoose.Promise = global.Promise;
 
 const productSchema = new mongoose.Schema({
   name: String,
-  // fill out
+  price: String,
+  impacts: [String],
+  num_colors: Number,
+  variations: [{
+    color: String,
+    original: String,
+    onHover: String,
+  }],
 });
 
 const Product = mongoose.model('Product', productSchema);
