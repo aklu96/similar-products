@@ -12,6 +12,7 @@ const productSchema = new mongoose.Schema({
     original: String,
     onHover: String,
   }],
+  relatedProducts: [String],
 });
 
 const Product = mongoose.model('Product', productSchema);
