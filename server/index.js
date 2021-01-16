@@ -10,6 +10,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// to-do: serve static files
+
 // open connection to database
 dbConnect();
 
@@ -17,7 +19,7 @@ dbConnect();
 app.get('/api/products/:productId', (req, res) => {
   Product.findById(req.params.productId)
     .then((data) => {
-      res.send(data);
+      res.status(200).send(data);
     })
     .catch((err) => {
       res.status(500).send(err);
