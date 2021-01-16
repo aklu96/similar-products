@@ -8,12 +8,13 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "react-dev": "webpack -w",
     "start": "nodemon server",
+    "react-dev": "webpack -w",
     "db:setup": "node database/seed.js"
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "faker": "^5.1.0",
     "mongoose": "^5.11.11",
