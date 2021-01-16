@@ -101,5 +101,3 @@ class Variation {
 
 imageUrls.forEach((imageUrl, i) => variations.push(new Variation(colors[i], imageUrl)));
 module.exports = variations;
-
-// console.log(variations);
