@@ -2,7 +2,7 @@
 const express = require('express');
 const cors = require('cors');
 const dbConnect = require('../database/dbConnect.js');
-const Product = require('../database/Product.js');
+const controller = require('./controller.js');
 
 // server setup
 const PORT = 3000;
@@ -14,16 +14,8 @@ app.use(express.static(`${__dirname}/../public`));
 // open connection to database
 dbConnect();
 
-// return product object associated with that id
-app.get('/api/products/:productId', (req, res) => {
-  Product.findById(req.params.productId)
-    .then((data) => {
-      res.status(200).send(data);
-    })
-    .catch((err) => {
-      res.status(500).send(err);
-    });
-});
+// return array of product objects that are similar to the specified product
+app.get('/api/products/:productId', controller.getSimilarProducts);
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}...`);
