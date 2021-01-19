@@ -1,7 +1,20 @@
 import React from 'react';
 
-const App = () => (
-  <div>React App is setup</div>
-);
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {};
+  }
+
+  componentDidMount() {
+
+  }
+
+  render() {
+    return (
+      <div>React App is setup</div>
+    );
+  }
+}
 
 export default App;

@@ -9,8 +9,7 @@ const PORT = 3000;
 const app = express();
 app.use(cors());
 app.use(express.json());
-
-// to-do: serve static files
+app.use(express.static(`${__dirname}/../public`));
 
 // open connection to database
 dbConnect();
