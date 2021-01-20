@@ -15,7 +15,6 @@ class Product extends React.Component {
     super(props);
 
     const { product } = this.props;
-    console.log(product);
 
     this.state = {
       variation: product.variations[0],
@@ -27,6 +26,8 @@ class Product extends React.Component {
     this.changeVariation = this.changeVariation.bind(this);
   }
 
+  // these functions toggle the 'mouseOn' state property,
+  // which then impacts which view is rendered
   onMouseEnter() {
     this.setState({
       mouseOn: true,
@@ -45,16 +46,13 @@ class Product extends React.Component {
     });
   }
 
-  render() {
+  renderBottomView() {
     const { product } = this.props;
-    const { variation, mouseOn } = this.state;
+    const { mouseOn } = this.state;
 
-    let bottomView;
-
-    if (mouseOn === false) {
-      bottomView = <Info product={product} />;
-    } else {
-      bottomView = (
+    // show the available colors when mouse hovers over component
+    if (mouseOn) {
+      return (
         <ColorContainer
           variations={product.variations}
           changeVariation={this.changeVariation}
@@ -62,13 +60,20 @@ class Product extends React.Component {
       );
     }
 
+    // default view is info panel
+    return <Info product={product} />;
+  }
+
+  render() {
+    const { variation, mouseOn } = this.state;
+
     return (
       <Wrapper
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
       >
         <Image variation={variation} mouseOn={mouseOn} />
-        {bottomView}
+        {this.renderBottomView()}
       </Wrapper>
     );
   }
