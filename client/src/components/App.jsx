@@ -11,14 +11,19 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      products: [],
+      // change back to empty array later if possible
+      products: [{
+        _id: null,
+      }],
     };
   }
 
   componentDidMount() {
-    axios.get('/api/products/3')
+    axios.get('/api/products/24')
       .then((res) => {
-        console.log(res.data);
+        this.setState({
+          products: res.data,
+        });
       });
   }
 
@@ -27,7 +32,10 @@ class App extends React.Component {
     return (
       <div>
         <Title>Similar to this Product</Title>
-        <Carousel products={products} />
+        {/* for purposes of creating a single product component,
+        just adding one product to the carousel for now
+        as an array - remember to remove enclosing brackets */}
+        <Carousel products={[products[0]]} />
       </div>
     );
   }
