@@ -7,6 +7,12 @@ const Title = styled.h1`
   font-family: Roboto, sans-serif;
 `;
 
+/* const CarouselContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+`; */
+
 class App extends React.Component {
   constructor() {
     super();
@@ -14,6 +20,9 @@ class App extends React.Component {
       // change back to empty array later if possible
       products: [{
         _id: null,
+        variations: [{
+          original: null,
+        }],
       }],
     };
   }
@@ -35,7 +44,9 @@ class App extends React.Component {
         {/* for purposes of creating a single product component,
         just adding one product to the carousel for now
         as an array - remember to remove enclosing brackets */}
+        {/* <CarouselContainer> */}
         <Carousel products={[products[0]]} />
+        {/* </CarouselContainer> */}
       </div>
     );
   }

@@ -3,7 +3,10 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+// import styled from 'styled-components';
 import Product from './product-components/Product';
+
+// const ProductContainer = styled.div
 
 class Carousel extends React.Component {
   constructor(props) {

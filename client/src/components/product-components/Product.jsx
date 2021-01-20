@@ -1,17 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Image from './Image';
 
 class Product extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    const { product } = this.props;
+    console.log(product);
+
+    this.state = {
+      image: product.variations[0].original,
+    };
   }
 
   render() {
-    const { product } = this.props;
+    // const { product } = this.props;
+    const { image } = this.state;
     return (
-      <span>{product.name}</span>
+      <div>
+        <Image image={image} />
+        {/* <Info product={product} /> */}
+      </div>
     );
   }
 }
