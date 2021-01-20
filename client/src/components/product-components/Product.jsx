@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Image from './Image';
+import Info from './Info';
 
 class Product extends React.Component {
   constructor(props) {
@@ -10,17 +11,37 @@ class Product extends React.Component {
     console.log(product);
 
     this.state = {
-      image: product.variations[0].original,
+      variation: product.variations[1],
+      mouseOn: false,
     };
+
+    this.onMouseEnter = this.onMouseEnter.bind(this);
+    this.onMouseLeave = this.onMouseLeave.bind(this);
+  }
+
+  onMouseEnter() {
+    this.setState({
+      mouseOn: true,
+    });
+  }
+
+  onMouseLeave() {
+    this.setState({
+      mouseOn: false,
+    });
   }
 
   render() {
-    // const { product } = this.props;
-    const { image } = this.state;
+    const { product } = this.props;
+    const { variation } = this.state;
+    const { mouseOn } = this.state;
     return (
-      <div>
-        <Image image={image} />
-        {/* <Info product={product} /> */}
+      <div
+        onMouseEnter={this.onMouseEnter}
+        onMouseLeave={this.onMouseLeave}
+      >
+        <Image variation={variation} mouseOn={mouseOn} />
+        <Info product={product} />
       </div>
     );
   }

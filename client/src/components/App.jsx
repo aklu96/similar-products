@@ -3,8 +3,9 @@ import axios from 'axios';
 import styled from 'styled-components';
 import Carousel from './Carousel';
 
-const Title = styled.h1`
+const Title = styled.p`
   font-family: Roboto, sans-serif;
+  font-weight: 700;
 `;
 
 /* const CarouselContainer = styled.div`
@@ -21,6 +22,8 @@ class App extends React.Component {
       products: [{
         _id: null,
         variations: [{
+          original: null,
+        }, {
           original: null,
         }],
       }],

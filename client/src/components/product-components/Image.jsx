@@ -8,14 +8,28 @@ const Img = styled.img`
 `;
 
 const Image = (props) => {
-  const { image } = props;
+  let image;
+  const { variation } = props;
+  const { mouseOn } = props;
+
+  if (mouseOn === false) {
+    image = variation.original;
+  } else {
+    image = variation.onHover;
+  }
+
   return (
     <Img src={image} alt="" />
   );
 };
 
 Image.propTypes = {
-  image: PropTypes.string.isRequired,
+  variation: PropTypes.shape({
+    color: PropTypes.string,
+    original: PropTypes.string,
+    onHover: PropTypes.string,
+  }).isRequired,
+  mouseOn: PropTypes.bool.isRequired,
 };
 
 export default Image;
