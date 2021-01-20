@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Image from './Image';
 import Info from './Info';
-import Colors from './Colors';
+import ColorContainer from './ColorContainer';
 
 const Wrapper = styled.div`
   height: 450px;
@@ -49,7 +49,7 @@ class Product extends React.Component {
       >
         <Image variation={variation} mouseOn={mouseOn} />
         <Info product={product} />
-        <Colors />
+        <ColorContainer variations={product.variations} />
       </Wrapper>
     );
   }

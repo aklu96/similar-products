@@ -42,10 +42,10 @@ for (let i = 1; i <= 100; i += 1) {
   // random price between $129.99 - $299.99
   product.price = `$${129.99 + Math.floor(Math.random() * 171)}`;
 
-  // each product will have 1-4 random impacts
+  // each product will have 1-5 random impacts
   product.impacts = shuffle(impacts).slice(0, Math.floor(Math.random() * 5) + 1);
 
-  // each product will have 1-4 random colors; each color comes with a "variation"
+  // each product will have 1-5 random colors; each color comes with a "variation"
   // that holds urls to its respective image(s)
   product.num_colors = Math.floor(Math.random() * 5) + 1;
   product.variations = shuffle(variations).slice(0, product.num_colors);
