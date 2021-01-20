@@ -11,15 +11,25 @@ margin: auto;
 `;
 
 const Color = (props) => {
-  const { color } = props;
+  const { variation, changeVariation } = props;
 
   return (
-    <Wrapper color={color} />
+    <Wrapper
+      color={variation.color}
+      onClick={() => {
+        changeVariation(variation);
+      }}
+    />
   );
 };
 
 Color.propTypes = {
-  color: PropTypes.string.isRequired,
+  variation: PropTypes.shape({
+    color: PropTypes.string,
+    original: PropTypes.string,
+    onHover: PropTypes.string,
+  }).isRequired,
+  changeVariation: PropTypes.func.isRequired,
 };
 
 export default Color;

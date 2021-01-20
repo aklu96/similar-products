@@ -31,7 +31,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/api/products/69')
+    axios.get('/api/products/24')
       .then((res) => {
         this.setState({
           products: res.data,

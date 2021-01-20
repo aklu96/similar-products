@@ -6,7 +6,7 @@ import Info from './Info';
 import ColorContainer from './ColorContainer';
 
 const Wrapper = styled.div`
-  height: 450px;
+  height: 425px;
   width: 350px;
 `;
 
@@ -18,12 +18,13 @@ class Product extends React.Component {
     console.log(product);
 
     this.state = {
-      variation: product.variations[1],
+      variation: product.variations[0],
       mouseOn: false,
     };
 
     this.onMouseEnter = this.onMouseEnter.bind(this);
     this.onMouseLeave = this.onMouseLeave.bind(this);
+    this.changeVariation = this.changeVariation.bind(this);
   }
 
   onMouseEnter() {
@@ -38,18 +39,36 @@ class Product extends React.Component {
     });
   }
 
+  changeVariation(variation) {
+    this.setState({
+      variation,
+    });
+  }
+
   render() {
     const { product } = this.props;
-    const { variation } = this.state;
-    const { mouseOn } = this.state;
+    const { variation, mouseOn } = this.state;
+
+    let bottomView;
+
+    if (mouseOn === false) {
+      bottomView = <Info product={product} />;
+    } else {
+      bottomView = (
+        <ColorContainer
+          variations={product.variations}
+          changeVariation={this.changeVariation}
+        />
+      );
+    }
+
     return (
       <Wrapper
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
       >
         <Image variation={variation} mouseOn={mouseOn} />
-        <Info product={product} />
-        <ColorContainer variations={product.variations} />
+        {bottomView}
       </Wrapper>
     );
   }

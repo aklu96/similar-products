@@ -11,17 +11,24 @@ const Wrapper = styled.div`
 `;
 
 const ColorContainer = (props) => {
-  const { variations } = props;
+  const { variations, changeVariation } = props;
 
   return (
     <Wrapper>
-      {variations.map((variation) => <Color key={variation.color} color={variation.color} />)}
+      {variations.map((variation) => (
+        <Color
+          key={variation.color}
+          variation={variation}
+          changeVariation={changeVariation}
+        />
+      ))}
     </Wrapper>
   );
 };
 
 ColorContainer.propTypes = {
   variations: PropTypes.arrayOf(PropTypes.object).isRequired,
+  changeVariation: PropTypes.func.isRequired,
 };
 
 export default ColorContainer;
