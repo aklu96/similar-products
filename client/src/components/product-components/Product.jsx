@@ -1,7 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import Image from './Image';
 import Info from './Info';
+import Colors from './Colors';
+
+const Wrapper = styled.div`
+  height: 450px;
+  width: 350px;
+`;
 
 class Product extends React.Component {
   constructor(props) {
@@ -36,13 +43,14 @@ class Product extends React.Component {
     const { variation } = this.state;
     const { mouseOn } = this.state;
     return (
-      <div
+      <Wrapper
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
       >
         <Image variation={variation} mouseOn={mouseOn} />
         <Info product={product} />
-      </div>
+        <Colors />
+      </Wrapper>
     );
   }
 }
