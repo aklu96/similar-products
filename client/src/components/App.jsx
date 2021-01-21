@@ -3,9 +3,10 @@ import axios from 'axios';
 import styled from 'styled-components';
 import Carousel from './Carousel';
 
-const Title = styled.p`
+const Title = styled.h2`
   font-family: Roboto, sans-serif;
   font-weight: 700;
+  padding: 15px 30px;
 `;
 
 /* const CarouselContainer = styled.div`
@@ -36,12 +37,7 @@ class App extends React.Component {
     return (
       <div>
         <Title>Similar to this Product</Title>
-        {/* for purposes of creating a single product component,
-        just adding one product to the carousel for now
-        as an array - remember to remove enclosing brackets */}
-        {/* <CarouselContainer> */}
-        <Carousel products={products} />
-        {/* </CarouselContainer> */}
+        <Carousel products={products.slice(0, 4)} />
       </div>
     );
   }

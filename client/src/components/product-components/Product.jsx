@@ -9,6 +9,7 @@ const Wrapper = styled.div`
   height: 425px;
   width: 350px;
   padding: 10px;
+  cursor: pointer;
 `;
 
 class Product extends React.Component {

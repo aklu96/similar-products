@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Img = styled.img`
-  height: 350px;
+  height: 325px;
   border-radius: 15px;
 `;
 
