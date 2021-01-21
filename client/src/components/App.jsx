@@ -33,6 +33,7 @@ class App extends React.Component {
 
   render() {
     const { products } = this.state;
+    console.log(products);
     return (
       <div>
         <Title>Similar to this Product</Title>
