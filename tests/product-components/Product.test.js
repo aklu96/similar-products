@@ -2,9 +2,9 @@
 /* eslint-disable no-undef */
 import React from 'react';
 import { shallow, mount, render } from 'enzyme';
-import Carousel from '../client/src/components/Carousel';
+import Product from '../../client/src/components/product-components/Product';
 
-const exampleProducts = [{
+const exampleProduct = {
   impacts: ['organic cotton', 'hemp'],
   name: "M's Incredible Metal Awesome Cotton Soap",
   num_colors: 4,
@@ -23,15 +23,15 @@ const exampleProducts = [{
   }],
   length: 4,
   _id: 13,
-}];
+};
 
-describe('Carousel', () => {
+describe('Product', () => {
   it('should render without crashing', () => {
-    shallow(<Carousel products={[]} />);
+    shallow(<Product product={exampleProduct} />);
   });
 
-  it('should accept an array of products as props', () => {
-    const wrapper = mount(<Carousel products={exampleProducts} />);
-    expect(wrapper.props().products).toEqual(exampleProducts);
+  it('should accept a product object as props', () => {
+    const wrapper = mount(<Product product={exampleProduct} />);
+    expect(wrapper.props().product).toEqual(exampleProduct);
   });
 });
