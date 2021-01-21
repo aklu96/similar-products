@@ -2,6 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+const Wrapper = styled.div`
+  padding-top: 10px;
+  padding-left: 20px;
+`;
+
 const Name = styled.div`
   font-family: Roboto, sans-serif;
   font-weight: 500;
@@ -12,6 +17,7 @@ const Price = styled.div`
   font-family: Roboto, sans-serif;
   font-weight: 400;
   font-size: 14px;
+  padding: 2px;
 `;
 
 const Colors = styled.div`
@@ -24,7 +30,7 @@ const Colors = styled.div`
 const Info = (props) => {
   const { product } = props;
   return (
-    <div>
+    <Wrapper>
       <Name>{product.name}</Name>
       <Price>{product.price}</Price>
       <div>impacts placeholder</div>
@@ -32,7 +38,7 @@ const Info = (props) => {
         <span>{product.num_colors}</span>
         <span> colors</span>
       </Colors>
-    </div>
+    </Wrapper>
   );
 };
 

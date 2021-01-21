@@ -8,6 +8,7 @@ import ColorContainer from './ColorContainer';
 const Wrapper = styled.div`
   height: 425px;
   width: 350px;
+  padding: 10px;
 `;
 
 class Product extends React.Component {

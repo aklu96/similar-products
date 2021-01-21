@@ -18,15 +18,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      // change back to empty array later if possible
-      products: [{
-        _id: null,
-        variations: [{
-          original: null,
-        }, {
-          original: null,
-        }],
-      }],
+      products: [],
     };
   }
 
@@ -48,7 +40,7 @@ class App extends React.Component {
         just adding one product to the carousel for now
         as an array - remember to remove enclosing brackets */}
         {/* <CarouselContainer> */}
-        <Carousel products={[products[0]]} />
+        <Carousel products={products} />
         {/* </CarouselContainer> */}
       </div>
     );

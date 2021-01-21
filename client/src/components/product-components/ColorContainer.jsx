@@ -8,6 +8,7 @@ const Wrapper = styled.div`
   align-items: center;
   width: 75px;
   margin: auto;
+  padding: 10px;
 `;
 
 const ColorContainer = (props) => {

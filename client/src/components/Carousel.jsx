@@ -3,10 +3,12 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 import Product from './product-components/Product';
 
-// const ProductContainer = styled.div
+const ProductContainer = styled.div`
+  display: flex;
+`;
 
 class Carousel extends React.Component {
   constructor(props) {
@@ -19,7 +21,9 @@ class Carousel extends React.Component {
   render() {
     const { products } = this.props;
     return (
-      <div>{products.map((product) => <Product key={product._id} product={product} />)}</div>
+      <ProductContainer>
+        {products.map((product) => <Product key={product._id} product={product} />)}
+      </ProductContainer>
     );
   }
 }

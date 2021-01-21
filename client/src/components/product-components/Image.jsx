@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const Img = styled.img`
   height: 350px;
-  border-radius: 8px;
+  border-radius: 15px;
 `;
 
 const Image = (props) => {
