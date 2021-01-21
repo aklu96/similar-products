@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const CircleWrapper = styled.div`
@@ -30,11 +31,19 @@ const StyledArrow = styled.i`
   margin-right: 26px;
 `;
 
-const LeftArrow = () => (
-  <CircleWrapper>
-    <StyledArrow />
-  </CircleWrapper>
-);
+const LeftArrow = (props) => {
+  const { onClick } = props;
+
+  return (
+    <CircleWrapper onClick={onClick}>
+      <StyledArrow />
+    </CircleWrapper>
+  );
+};
+
+LeftArrow.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
 
 export default LeftArrow;
 
