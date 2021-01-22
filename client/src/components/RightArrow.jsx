@@ -16,6 +16,10 @@ const CircleWrapper = styled.div`
   margin-left: 1350px;
   position: absolute;
   z-index: 1;
+  transition: all 0.2s ease;
+  &:hover {
+    transform:scale(1.05);
+  }
 `;
 
 const StyledArrow = styled.i`
@@ -46,13 +50,3 @@ RightArrow.propTypes = {
 };
 
 export default RightArrow;
-
-/* Attempted Hover animation:
-
-&:hover {
-  transition: transform .2s cubic-bezier(.235,0,.05,.95);
-  transition-property: transform;
-  transition-duration: 0.2s;
-  transition-timing-function: cubic-bezier(0.235, 0, 0.05, 0.95);
-  transition-delay: 0s;
-} */

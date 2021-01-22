@@ -10,12 +10,17 @@ const CircleWrapper = styled.div`
   width: 60px;
   height: 60px;
   border-radius: 50%;
+  border: solid 1px white;
   background-color: white;
   box-shadow: 0 6px 8px 0 rgba(0,0,0,.2);
   margin-top: 140px;
   margin-left: 10px;
   position: absolute;
   z-index: 1;
+  transition: all 0.2s ease;
+  &:hover {
+    transform:scale(1.05);
+  }
 `;
 
 const StyledArrow = styled.i`
@@ -46,13 +51,3 @@ LeftArrow.propTypes = {
 };
 
 export default LeftArrow;
-
-/* Attempted Hover animation:
-
-&:hover {
-  transition: transform .2s cubic-bezier(.235,0,.05,.95);
-  transition-property: transform;
-  transition-duration: 0.2s;
-  transition-timing-function: cubic-bezier(0.235, 0, 0.05, 0.95);
-  transition-delay: 0s;
-} */

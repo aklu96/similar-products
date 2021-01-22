@@ -6,6 +6,11 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Product from './product-components/Product';
 
+// const ViewPort = styled.div`
+//   position: absolute;
+//   width:
+// `;
+
 const ProductContainer = styled.div`
   display: flex;
   width: 1400px;
