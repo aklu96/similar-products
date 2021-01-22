@@ -8,7 +8,7 @@ import Product from './product-components/Product';
 
 const ViewPort = styled.div`
   position: absolute;
-  width: 1400px;
+  width: 100vw;
   margin-left: 12px;
   box-sizing: border-box;
 `;

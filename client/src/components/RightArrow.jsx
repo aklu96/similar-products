@@ -13,7 +13,7 @@ const CircleWrapper = styled.div`
   background-color: white;
   box-shadow: 0 6px 8px 0 rgba(0,0,0,.2);
   margin-top: 140px;
-  margin-left: 1350px;
+  left: calc(100vw - 70px);
   position: absolute;
   z-index: 1;
   transition: all 0.2s ease;

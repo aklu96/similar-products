@@ -13,7 +13,8 @@ const Title = styled.h2`
 
 const CarouselContainer = styled.div`
   display: flex;
-  width: 100%;
+  width: 100vw;
+  height: 425px;
 `;
 
 class App extends React.Component {
@@ -22,9 +23,9 @@ class App extends React.Component {
 
     this.state = {
       products: [],
-      moveDirection: '',
       carouselIndex: 0,
-      leftArrow: true,
+      productTracker: 0,
+      leftArrow: false,
       rightArrow: true,
     };
 
@@ -50,15 +51,30 @@ class App extends React.Component {
   }
 
   updateCarouselView(moveDirection) {
-    let { carouselIndex, leftArrow, rightArrow } = this.state;
-    const { products } = this.state;
+    let {
+      carouselIndex,
+      productTracker,
+      leftArrow,
+      rightArrow,
+    } = this.state;
 
-    if (moveDirection === 'left') {
+    const { products } = this.state;
+    const carouselLength = products.length * 320;
+    const windowLength = window.innerWidth;
+
+    // first checks if the carousel is all the way to the right
+    // corrects it if so, and if not, then checks for normal leftward movement
+    if (carouselLength - carouselIndex < windowLength && moveDirection === 'left') {
+      carouselIndex = productTracker * 320;
+      rightArrow = true;
+    } else if (moveDirection === 'left') {
       carouselIndex -= 320;
+      productTracker -= 1;
     }
 
     if (moveDirection === 'right') {
       carouselIndex += 320;
+      productTracker += 1;
     }
 
     if (carouselIndex === 0) {
@@ -66,7 +82,11 @@ class App extends React.Component {
     } else {
       leftArrow = true;
     }
-    if (carouselIndex === (products.length - 3) * 320) {
+
+    // catches an overshoot to the right and corrects it
+    if (carouselLength - carouselIndex < windowLength && moveDirection === 'right') {
+      carouselIndex = carouselLength - windowLength + 22;
+      productTracker -= 1;
       rightArrow = false;
     } else {
       rightArrow = true;
@@ -74,6 +94,7 @@ class App extends React.Component {
 
     this.setState({
       carouselIndex,
+      productTracker,
       leftArrow,
       rightArrow,
     });
