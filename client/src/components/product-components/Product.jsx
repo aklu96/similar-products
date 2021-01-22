@@ -7,7 +7,7 @@ import ColorContainer from './ColorContainer';
 
 const Wrapper = styled.div`
   height: 425px;
-  width: 350px;
+  width: 300px;
   padding: 10px;
   cursor: pointer;
 `;

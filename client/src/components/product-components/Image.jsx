@@ -17,7 +17,8 @@ const Img = styled.img`
   &:hover {
     transform:scale(1.1)
   }
-  object-fit: cover;
+  position: relative;
+  right: 12px;
 `;
 
 const Image = (props) => {

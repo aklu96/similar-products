@@ -6,30 +6,36 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Product from './product-components/Product';
 
-// const ViewPort = styled.div`
-//   position: absolute;
-//   width:
-// `;
+const ViewPort = styled.div`
+  position: absolute;
+  width: 1400px;
+  margin-left: 12px;
+  box-sizing: border-box;
+`;
 
 const ProductContainer = styled.div`
   display: flex;
-  width: 1400px;
-  margin-left: 12px;
+  width: fit-content;
+  transition: transform 0.2s 0s ease-in;
+  transform: translateX(-${(props) => props.index}px)
 `;
 
 const Carousel = (props) => {
-  const { products } = props;
+  const { products, index } = props;
   return (
     <div>
-      <ProductContainer>
-        {products.map((product) => <Product key={product._id} product={product} />)}
-      </ProductContainer>
+      <ViewPort>
+        <ProductContainer index={index}>
+          {products.map((product) => <Product key={product._id} product={product} />)}
+        </ProductContainer>
+      </ViewPort>
     </div>
   );
 };
 
 Carousel.propTypes = {
   products: PropTypes.arrayOf(PropTypes.object).isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 export default Carousel;

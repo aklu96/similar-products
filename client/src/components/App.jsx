@@ -21,10 +21,10 @@ class App extends React.Component {
     super();
 
     this.state = {
-      allProducts: [],
-      displayProducts: [],
+      products: [],
+      moveDirection: '',
       carouselIndex: 0,
-      leftArrow: false,
+      leftArrow: true,
       rightArrow: true,
     };
 
@@ -36,41 +36,44 @@ class App extends React.Component {
     axios.get('/api/products/24')
       .then((res) => {
         this.setState({
-          allProducts: res.data,
-          displayProducts: res.data.slice(0, 4),
+          products: res.data,
         });
       });
   }
 
   onLeftArrowClick() {
-    let { carouselIndex } = this.state;
-    this.updateCarouselView(carouselIndex -= 1);
+    this.updateCarouselView('left');
   }
 
   onRightArrowClick() {
-    let { carouselIndex } = this.state;
-    this.updateCarouselView(carouselIndex += 1);
+    this.updateCarouselView('right');
   }
 
-  updateCarouselView(index) {
-    const { allProducts } = this.state;
-    let { leftArrow, rightArrow } = this.state;
-    const displayProducts = allProducts.slice(index, index + 4);
+  updateCarouselView(moveDirection) {
+    let { carouselIndex, leftArrow, rightArrow } = this.state;
+    const { products } = this.state;
 
-    if (index === 0) {
+    if (moveDirection === 'left') {
+      carouselIndex -= 320;
+    }
+
+    if (moveDirection === 'right') {
+      carouselIndex += 320;
+    }
+
+    if (carouselIndex === 0) {
       leftArrow = false;
     } else {
       leftArrow = true;
     }
-    if (index === allProducts.length - 4) {
+    if (carouselIndex === (products.length - 3) * 320) {
       rightArrow = false;
     } else {
       rightArrow = true;
     }
 
     this.setState({
-      displayProducts,
-      carouselIndex: index,
+      carouselIndex,
       leftArrow,
       rightArrow,
     });
@@ -93,13 +96,13 @@ class App extends React.Component {
   }
 
   render() {
-    const { displayProducts } = this.state;
+    const { products, carouselIndex } = this.state;
     return (
       <div>
         <Title>Similar to this Product</Title>
         <CarouselContainer>
           {this.renderLeftArrow()}
-          <Carousel products={displayProducts} />
+          <Carousel products={products} index={carouselIndex} />
           {this.renderRightArrow()}
         </CarouselContainer>
       </div>
