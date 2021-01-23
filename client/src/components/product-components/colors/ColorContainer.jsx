@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 `;
 
 const ColorContainer = (props) => {
-  const { variations, changeVariation } = props;
+  const { variations, currentVariation, changeVariation } = props;
 
   return (
     <Wrapper>
@@ -20,6 +20,7 @@ const ColorContainer = (props) => {
         <Color
           key={variation.color}
           variation={variation}
+          currentVariation={currentVariation}
           changeVariation={changeVariation}
         />
       ))}
@@ -30,6 +31,11 @@ const ColorContainer = (props) => {
 ColorContainer.propTypes = {
   variations: PropTypes.arrayOf(PropTypes.object).isRequired,
   changeVariation: PropTypes.func.isRequired,
+  currentVariation: PropTypes.shape({
+    color: PropTypes.string,
+    original: PropTypes.string,
+    onHover: PropTypes.string,
+  }).isRequired,
 };
 
 export default ColorContainer;

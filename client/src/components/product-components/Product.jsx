@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Image from './Image';
-import Info from './Info';
-import ColorContainer from './ColorContainer';
+import Info from './info/Info';
+import ColorContainer from './colors/ColorContainer';
 
 const Wrapper = styled.div`
   height: 425px;
@@ -19,7 +19,7 @@ class Product extends React.Component {
     const { product } = this.props;
 
     this.state = {
-      variation: product.variations[0],
+      currentVariation: product.variations[0],
       mouseOn: false,
     };
 
@@ -42,21 +42,22 @@ class Product extends React.Component {
     });
   }
 
-  changeVariation(variation) {
+  changeVariation(currentVariation) {
     this.setState({
-      variation,
+      currentVariation,
     });
   }
 
   renderBottomView() {
     const { product } = this.props;
-    const { mouseOn } = this.state;
+    const { currentVariation, mouseOn } = this.state;
 
     // show the available colors when mouse hovers over component
     if (mouseOn) {
       return (
         <ColorContainer
           variations={product.variations}
+          currentVariation={currentVariation}
           changeVariation={this.changeVariation}
         />
       );
@@ -67,14 +68,14 @@ class Product extends React.Component {
   }
 
   render() {
-    const { variation, mouseOn } = this.state;
+    const { currentVariation, mouseOn } = this.state;
 
     return (
       <Wrapper
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
       >
-        <Image variation={variation} mouseOn={mouseOn} />
+        <Image variation={currentVariation} mouseOn={mouseOn} />
         {this.renderBottomView()}
       </Wrapper>
     );
