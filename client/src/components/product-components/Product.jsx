@@ -1,8 +1,6 @@
-/* eslint-disable no-use-before-define */
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-// import Image from './Image';
 import Info from './info/Info';
 import ColorContainer from './colors/ColorContainer';
 
@@ -11,7 +9,7 @@ import ColorContainer from './colors/ColorContainer';
 // This is because the Image should expand when the Product component is hovered over
 // It's unclear to me how to achieve this with styled components in separate files
 // For now, I'll achieve this functionality by having both components defined in this file
-// The Image file is left as a standalone file, but is unused as of now
+// The Image file is left as a standalone file, but is unused
 
 const ProductWrapper = styled.div`
   height: 425px;
