@@ -2,15 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const Wrapper = styled.div`
+const ImageWrapper = styled.div`
   height: 325px;
   border-radius: 15px;
   width: 300px;
   overflow: hidden;
 `;
 
-// Would like: ${Product}:hover & {}
-
+// This component needs to transform when the entire product component is hovered over
 const Img = styled.img`
   height: 325px;
   transition: all 0.2s ease;
@@ -33,9 +32,9 @@ const Image = (props) => {
   }
 
   return (
-    <Wrapper>
+    <ImageWrapper>
       <Img src={image} alt="" mouseOn={mouseOn} />
-    </Wrapper>
+    </ImageWrapper>
   );
 };
 
