@@ -39,15 +39,15 @@ for (let i = 1; i <= 100; i += 1) {
   // create a random fake name
   product.name = `${genders[gender]} ${faker.commerce.productAdjective()} ${faker.commerce.productMaterial()} ${faker.commerce.productName()}`;
 
-  // random price between $129.99 - $299.99
-  product.price = `$${129.99 + Math.floor(Math.random() * 171)}`;
+  // random price between $129 - $299
+  product.price = `$${129 + Math.floor(Math.random() * 171)}`;
 
   // each product will have 1-5 random impacts
   product.impacts = shuffle(impacts).slice(0, Math.floor(Math.random() * 5) + 1);
 
-  // each product will have 1-5 random colors; each color comes with a "variation"
-  // that holds urls to its respective image(s)
-  product.num_colors = Math.floor(Math.random() * 5) + 1;
+  // each product will have 1-4 random colors; each color comes with a
+  // "variation" that holds urls to its respective image(s)
+  product.num_colors = Math.floor(Math.random() * 4) + 1;
   product.variations = shuffle(variations).slice(0, product.num_colors);
 
   // each product will have 10-15 random related products
