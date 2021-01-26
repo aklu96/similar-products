@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Color from './Color';
+import WishListButton from './WishListButton';
 
-const Wrapper = styled.div`
+const ColorWrapper = styled.div`
   display: flex;
   align-items: center;
   width: 75px;
@@ -11,20 +12,33 @@ const Wrapper = styled.div`
   padding: 10px;
 `;
 
+const ButtonWrapper = styled.div`
+  display: flex;
+  width: 280px;
+  height: 60px;
+  padding-left: 92px;
+  padding-top: 15px;
+`;
+
 const ColorContainer = (props) => {
   const { variations, currentVariation, changeVariation } = props;
 
   return (
-    <Wrapper>
-      {variations.map((variation) => (
-        <Color
-          key={variation.color}
-          variation={variation}
-          currentVariation={currentVariation}
-          changeVariation={changeVariation}
-        />
-      ))}
-    </Wrapper>
+    <div>
+      <ColorWrapper>
+        {variations.map((variation) => (
+          <Color
+            key={variation.color}
+            variation={variation}
+            currentVariation={currentVariation}
+            changeVariation={changeVariation}
+          />
+        ))}
+      </ColorWrapper>
+      <ButtonWrapper>
+        <WishListButton />
+      </ButtonWrapper>
+    </div>
   );
 };
 
