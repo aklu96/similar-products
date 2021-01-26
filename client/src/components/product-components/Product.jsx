@@ -12,7 +12,7 @@ import ColorContainer from './colors/ColorContainer';
 // The Image file is left as a standalone file, but is unused
 
 const ProductWrapper = styled.div`
-  height: 425px;
+  height: 420px;
   width: 300px;
   padding: 10px;
 `;
@@ -91,7 +91,7 @@ class Product extends React.Component {
   }
 
   renderBottomView() {
-    const { product } = this.props;
+    const { inWishList, addToWishList, product } = this.props;
     const { currentVariation, mouseOn } = this.state;
 
     // show the available colors when mouse hovers over component
@@ -101,6 +101,9 @@ class Product extends React.Component {
           variations={product.variations}
           currentVariation={currentVariation}
           changeVariation={this.changeVariation}
+          inWishList={inWishList}
+          addToWishList={addToWishList}
+          product={product}
         />
       );
     }
@@ -144,6 +147,8 @@ Product.propTypes = {
     variations: PropTypes.arrayOf(PropTypes.object),
     relatedProductIds: PropTypes.arrayOf(PropTypes.number),
   }).isRequired,
+  inWishList: PropTypes.bool.isRequired,
+  addToWishList: PropTypes.func.isRequired,
 };
 
 export default Product;

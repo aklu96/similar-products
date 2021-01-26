@@ -1,9 +1,11 @@
+/* eslint-disable no-console */
 import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import Carousel from './Carousel';
 import LeftArrow from './LeftArrow';
 import RightArrow from './RightArrow';
+import WishList from './WishList';
 
 const Title = styled.h2`
   font-family: Roboto, sans-serif;
@@ -27,18 +29,23 @@ class App extends React.Component {
       productTracker: 0,
       leftArrow: false,
       rightArrow: true,
+      wishList: [],
     };
 
     this.onLeftArrowClick = this.onLeftArrowClick.bind(this);
     this.onRightArrowClick = this.onRightArrowClick.bind(this);
+    this.addToWishList = this.addToWishList.bind(this);
   }
 
   componentDidMount() {
-    axios.get('/api/products/96')
+    axios.get('http://localhost:3000/api/products/96')
       .then((res) => {
         this.setState({
           products: res.data,
         });
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }
 
@@ -100,6 +107,20 @@ class App extends React.Component {
     });
   }
 
+  // this method adds a product to the database
+  // and re-renders the wishlist component upon successful post request
+  addToWishList(product) {
+    axios.post('http://localhost:3000/api/wishlist', product)
+      .then((res) => {
+        this.setState({
+          wishList: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   renderLeftArrow() {
     const { leftArrow } = this.state;
     if (leftArrow) {
@@ -117,16 +138,22 @@ class App extends React.Component {
   }
 
   render() {
-    const { products, carouselIndex } = this.state;
+    const { products, carouselIndex, wishList } = this.state;
     return (
       <div>
         <Title>Similar to this Product</Title>
         <CarouselContainer>
           {this.renderLeftArrow()}
-          <Carousel products={products} index={carouselIndex} />
+          <Carousel
+            products={products}
+            index={carouselIndex}
+            wishList={wishList}
+            addToWishList={this.addToWishList}
+          />
           {this.renderRightArrow()}
         </CarouselContainer>
         <Title>Wish List</Title>
+        <WishList wishList={wishList} />
       </div>
     );
   }

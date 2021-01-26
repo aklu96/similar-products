@@ -26,8 +26,8 @@ const getSimilarProducts = (req, res) => {
 const addToAndReturnWishList = (req, res) => {
   WishList.create(req.body)
     .then(() => WishList.find())
-    .then((wishlist) => {
-      res.status(201).send(wishlist);
+    .then((wishList) => {
+      res.status(201).send(wishList);
     })
     .catch((err) => {
       res.status(500).send(err);
