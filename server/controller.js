@@ -23,6 +23,16 @@ const getSimilarProducts = (req, res) => {
     });
 };
 
+const getWishList = (req, res) => {
+  WishList.find()
+    .then((wishList) => {
+      res.status(200).send(wishList);
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
+};
+
 const addToAndReturnWishList = (req, res) => {
   WishList.create(req.body)
     .then(() => WishList.find())
@@ -37,5 +47,6 @@ const addToAndReturnWishList = (req, res) => {
 module.exports = {
   getProduct,
   getSimilarProducts,
+  getWishList,
   addToAndReturnWishList,
 };

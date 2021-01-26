@@ -17,6 +17,9 @@ dbConnect();
 // return array of product objects that are similar to the specified product
 app.get('/api/products/:productId', controller.getSimilarProducts);
 
+// return the full wish list
+app.get('/api/wishlist', controller.getWishList);
+
 // add a product to the wish list
 app.post('/api/wishlist', controller.addToAndReturnWishList);
 

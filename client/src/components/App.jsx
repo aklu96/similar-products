@@ -3,20 +3,27 @@ import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import Carousel from './Carousel';
-import LeftArrow from './LeftArrow';
-import RightArrow from './RightArrow';
+import LeftArrow from './arrows/LeftArrow';
+import RightArrow from './arrows/RightArrow';
 import WishList from './WishList';
+
+const AppWrapper = styled.div`
+  width: 100vw;
+  overflow: hidden;
+`;
 
 const Title = styled.h2`
   font-family: Roboto, sans-serif;
   font-weight: 700;
   padding: 15px 30px;
+  position: relative;
 `;
 
 const CarouselContainer = styled.div`
   display: flex;
   width: 100vw;
   height: 425px;
+  position: relative;
 `;
 
 class App extends React.Component {
@@ -38,10 +45,16 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    let products;
     axios.get('http://localhost:3000/api/products/96')
       .then((res) => {
+        products = res.data;
+      })
+      .then(() => axios.get('http://localhost:3000/api/wishlist'))
+      .then((res) => {
         this.setState({
-          products: res.data,
+          products,
+          wishList: res.data,
         });
       })
       .catch((err) => {
@@ -140,7 +153,7 @@ class App extends React.Component {
   render() {
     const { products, carouselIndex, wishList } = this.state;
     return (
-      <div>
+      <AppWrapper>
         <Title>Similar to this Product</Title>
         <CarouselContainer>
           {this.renderLeftArrow()}
@@ -154,7 +167,7 @@ class App extends React.Component {
         </CarouselContainer>
         <Title>Wish List</Title>
         <WishList wishList={wishList} />
-      </div>
+      </AppWrapper>
     );
   }
 }

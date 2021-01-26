@@ -8,8 +8,7 @@ import ColorContainer from './colors/ColorContainer';
 // This file contains both the Product and Image components
 // This is because the Image should expand when the Product component is hovered over
 // It's unclear to me how to achieve this with styled components in separate files
-// For now, I'll achieve this functionality by having both components defined in this file
-// The Image file is left as a standalone file, but is unused
+// I'll achieve this functionality by having both components defined in this file
 
 const ProductWrapper = styled.div`
   height: 420px;
