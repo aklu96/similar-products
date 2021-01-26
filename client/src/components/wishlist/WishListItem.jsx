@@ -29,26 +29,77 @@ const Price = styled.div`
   font-family: Roboto, sans-serif;
   font-weight: 400;
   font-size: 14px;
-  padding: 2px;
+  margin-right: 10px;
+`;
+
+const ButtonWrapper = styled.div`
+  height: 40px;
+  padding: 0px 10px;
+`;
+
+const Button = styled.div`
+  cursor: pointer;
+  font-family: Roboto, sans-serif;
+  position: relative;
+  margin: auto;
+  font-weight: 500;
+  font-size: 12px;
+  height: 20px;
 `;
 
 class WishListItem extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+
+    this.state = {
+      mouseOn: false,
+    };
+
+    this.onMouseEnter = this.onMouseEnter.bind(this);
+    this.onMouseLeave = this.onMouseLeave.bind(this);
+  }
+
+  onMouseEnter() {
+    this.setState({
+      mouseOn: true,
+    });
+  }
+
+  onMouseLeave() {
+    this.setState({
+      mouseOn: false,
+    });
+  }
+
+  renderButtonView() {
+    const { mouseOn } = this.state;
+    if (mouseOn) {
+      return (
+        <ButtonWrapper>
+          <Button>
+            Remove
+          </Button>
+        </ButtonWrapper>
+      );
+    }
+    return null;
   }
 
   render() {
     const { product } = this.props;
 
     return (
-      <Wrapper>
+      <Wrapper
+        onMouseEnter={this.onMouseEnter}
+        onMouseLeave={this.onMouseLeave}
+      >
         <Name>
           {product.name}
         </Name>
         <Price>
           {product.price}
         </Price>
+        {this.renderButtonView()}
       </Wrapper>
     );
   }
