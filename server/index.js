@@ -18,10 +18,10 @@ dbConnect();
 app.get('/api/products/:productId', controller.getSimilarProducts);
 
 // return the full wish list
-app.get('/api/wishlist', controller.getWishList);
+app.get('/api/wishlist/:productId', controller.getWishList);
 
 // add a product to the wish list
-app.post('/api/wishlist', controller.addToAndReturnWishList);
+app.post('/api/wishlist/:productId', controller.addToAndReturnWishList);
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}...`);

@@ -30,7 +30,9 @@ class App extends React.Component {
   constructor() {
     super();
 
+    // set product id to your choice between 1 - 100
     this.state = {
+      productId: 96,
       products: [],
       carouselIndex: 0,
       productTracker: 0,
@@ -45,16 +47,18 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    const { productId } = this.state;
     let products;
-    axios.get('http://localhost:3000/api/products/96')
+
+    axios.get(`http://localhost:3000/api/products/${productId}`)
       .then((res) => {
         products = res.data;
       })
-      .then(() => axios.get('http://localhost:3000/api/wishlist'))
+      .then(() => axios.get(`http://localhost:3000/api/wishlist/${productId}`))
       .then((res) => {
         this.setState({
           products,
-          wishList: res.data,
+          wishList: res.data.products,
         });
       })
       .catch((err) => {
@@ -123,10 +127,19 @@ class App extends React.Component {
   // this method adds a product to the database
   // and re-renders the wishlist component upon successful post request
   addToWishList(product) {
-    axios.post('http://localhost:3000/api/wishlist', product)
+    const { productId, wishList } = this.state;
+    console.log(product);
+    wishList.push(product);
+    const update = {
+      _id: productId,
+      products: wishList,
+    };
+
+    axios.post(`http://localhost:3000/api/wishlist/${productId}`, update)
       .then((res) => {
+        console.log(res.data);
         this.setState({
-          wishList: res.data,
+          wishList: res.data.products,
         });
       })
       .catch((err) => {

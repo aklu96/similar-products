@@ -1,17 +1,6 @@
 const Product = require('../database/collections/Product.js');
 const WishList = require('../database/collections/WishList.js');
 
-// don't currently need this function but I'll leave it for now
-const getProduct = (req, res) => {
-  Product.findById(req.params.productId)
-    .then((product) => {
-      res.status(200).send(product);
-    })
-    .catch((err) => {
-      res.status(500).send(err);
-    });
-};
-
 const getSimilarProducts = (req, res) => {
   Product.findById(req.params.productId)
     .then((product) => Product.find().where('_id').in(product.relatedProductIds))
@@ -23,8 +12,10 @@ const getSimilarProducts = (req, res) => {
     });
 };
 
+// The database should house a wishlist for each product id separately
+// The schema reflects an _id property matching the product, and an array of products
 const getWishList = (req, res) => {
-  WishList.find()
+  WishList.findById(req.params.productId)
     .then((wishList) => {
       res.status(200).send(wishList);
     })
@@ -33,9 +24,15 @@ const getWishList = (req, res) => {
     });
 };
 
+// Therefore, the frontend must send the entire wishlist array and the id
 const addToAndReturnWishList = (req, res) => {
-  WishList.create(req.body)
-    .then(() => WishList.find())
+  const options = {
+    new: true,
+    upsert: true,
+    overwrite: true,
+  };
+
+  WishList.findOneAndUpdate({ _id: req.params.productId }, req.body, options)
     .then((wishList) => {
       res.status(201).send(wishList);
     })
@@ -45,8 +42,18 @@ const addToAndReturnWishList = (req, res) => {
 };
 
 module.exports = {
-  getProduct,
   getSimilarProducts,
   getWishList,
   addToAndReturnWishList,
 };
+
+/* const addToAndReturnWishList = (req, res) => {
+  WishList.create(req.body)
+    .then(() => WishList.find())
+    .then((wishList) => {
+      res.status(201).send(wishList);
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
+}; */

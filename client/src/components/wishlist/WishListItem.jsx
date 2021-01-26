@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   display: flex;
-  width: 400px;
+  width: 450px;
   height: 40px;
   margin: 5px 5px 5px 50px;
   border: solid 3px lightblue;
@@ -21,7 +21,7 @@ const Name = styled.div`
   font-family: Roboto, sans-serif;
   font-weight: 500;
   font-size: 14px;
-  width: 350px;
+  width: 400px;
   margin-left: 10px;
 `;
 
@@ -29,6 +29,7 @@ const Price = styled.div`
   font-family: Roboto, sans-serif;
   font-weight: 400;
   font-size: 14px;
+  margin-left: 10px;
   margin-right: 10px;
 `;
 
