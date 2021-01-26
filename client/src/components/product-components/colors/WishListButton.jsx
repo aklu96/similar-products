@@ -10,7 +10,12 @@ const Button = styled.button`
   width: 120px;
   height: 30px;
   color: #fff;
-  border-radius: 12px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  &:hover {
+    transform:scale(1.05);
+  }
 `;
 
 const WishListButton = () => (

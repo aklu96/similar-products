@@ -15,7 +15,6 @@ const ProductWrapper = styled.div`
   height: 425px;
   width: 300px;
   padding: 10px;
-  cursor: pointer;
 `;
 
 const ImageWrapper = styled.div`

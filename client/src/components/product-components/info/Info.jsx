@@ -14,19 +14,6 @@ const Name = styled.div`
   font-weight: 500;
   font-size: 14px;
   width: 280px;
-  height: 32px;
-`;
-
-const BottomWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 280px;
-  height: 60px;
-`;
-
-const BottomLeftWrapper = styled.div`
-  width: 80px;
-  height: 60px;
 `;
 
 const Price = styled.div`
@@ -43,29 +30,17 @@ const Colors = styled.div`
   font-size: 12px;
 `;
 
-const ButtonWrapper = styled.div`
-  padding-top: 15px;
-  padding-right: 10px;
-`;
-
 const Info = (props) => {
   const { product } = props;
   return (
     <Wrapper>
       <Name>{product.name}</Name>
-      <BottomWrapper>
-        <BottomLeftWrapper>
-          <Price>{product.price}</Price>
-          {renderImpacts(product.impacts)}
-          <Colors>
-            <span>{product.num_colors}</span>
-            <span> colors</span>
-          </Colors>
-        </BottomLeftWrapper>
-        <ButtonWrapper>
-          <WishListButton />
-        </ButtonWrapper>
-      </BottomWrapper>
+      <Price>{product.price}</Price>
+      {renderImpacts(product.impacts)}
+      <Colors>
+        <span>{product.num_colors}</span>
+        <span> colors</span>
+      </Colors>
     </Wrapper>
   );
 };
