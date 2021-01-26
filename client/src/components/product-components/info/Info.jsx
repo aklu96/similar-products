@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import renderImpacts from './impacts/renderImpacts';
+import WishListButton from '../../WishListButton';
 
 const Wrapper = styled.div`
   padding-top: 10px;

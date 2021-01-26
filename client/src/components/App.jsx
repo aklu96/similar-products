@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Carousel from './Carousel';
 import LeftArrow from './LeftArrow';
 import RightArrow from './RightArrow';
+import WishListButton from './WishListButton';
 
 const Title = styled.h2`
   font-family: Roboto, sans-serif;
@@ -126,6 +127,8 @@ class App extends React.Component {
           <Carousel products={products} index={carouselIndex} />
           {this.renderRightArrow()}
         </CarouselContainer>
+        <Title>Wish List</Title>
+        <WishListButton />
       </div>
     );
   }
