@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const dbConnect = require('./dbConnect.js');
-const Product = require('./Product.js');
+const Product = require('./collections/Product.js');
 const products = require('./data/data.js');
 
 // create and connect to database
