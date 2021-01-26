@@ -44,6 +44,7 @@ class App extends React.Component {
     this.onLeftArrowClick = this.onLeftArrowClick.bind(this);
     this.onRightArrowClick = this.onRightArrowClick.bind(this);
     this.addToWishList = this.addToWishList.bind(this);
+    this.removeFromWishList = this.removeFromWishList.bind(this);
   }
 
   componentDidMount() {
@@ -124,11 +125,10 @@ class App extends React.Component {
     });
   }
 
-  // this method adds a product to the database
+  // this method adds a product to the wishlist database
   // and re-renders the wishlist component upon successful post request
   addToWishList(product) {
     const { productId, wishList } = this.state;
-    console.log(product);
     wishList.push(product);
     const update = {
       _id: productId,
@@ -138,6 +138,27 @@ class App extends React.Component {
     axios.post(`http://localhost:3000/api/wishlist/${productId}`, update)
       .then((res) => {
         console.log(res.data);
+        this.setState({
+          wishList: res.data.products,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  // this method removes a product from the wishlist database
+  // and re-renders the wishlist component upon successful post request
+  removeFromWishList(product) {
+    const { productId, wishList } = this.state;
+    wishList.splice(wishList.indexOf(product), 1);
+    const update = {
+      _id: productId,
+      products: wishList,
+    };
+
+    axios.post(`http://localhost:3000/api/wishlist/${productId}`, update)
+      .then((res) => {
         this.setState({
           wishList: res.data.products,
         });
@@ -179,7 +200,7 @@ class App extends React.Component {
           {this.renderRightArrow()}
         </CarouselContainer>
         <Title>Wish List</Title>
-        <WishList wishList={wishList} />
+        <WishList wishList={wishList} remove={this.removeFromWishList} />
       </AppWrapper>
     );
   }

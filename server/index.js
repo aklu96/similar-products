@@ -20,8 +20,8 @@ app.get('/api/products/:productId', controller.getSimilarProducts);
 // return the full wish list
 app.get('/api/wishlist/:productId', controller.getWishList);
 
-// add a product to the wish list
-app.post('/api/wishlist/:productId', controller.addToAndReturnWishList);
+// add or remove a product to/from the wish list
+app.post('/api/wishlist/:productId', controller.updateWishList);
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}...`);

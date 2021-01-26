@@ -25,7 +25,8 @@ const getWishList = (req, res) => {
 };
 
 // Therefore, the frontend must send the entire wishlist array and the id
-const addToAndReturnWishList = (req, res) => {
+// This allows method for adding and removing to wishlist to be the same on the backen
+const updateWishList = (req, res) => {
   const options = {
     new: true,
     upsert: true,
@@ -44,16 +45,5 @@ const addToAndReturnWishList = (req, res) => {
 module.exports = {
   getSimilarProducts,
   getWishList,
-  addToAndReturnWishList,
+  updateWishList,
 };
-
-/* const addToAndReturnWishList = (req, res) => {
-  WishList.create(req.body)
-    .then(() => WishList.find())
-    .then((wishList) => {
-      res.status(201).send(wishList);
-    })
-    .catch((err) => {
-      res.status(500).send(err);
-    });
-}; */

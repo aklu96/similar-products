@@ -74,10 +74,16 @@ class WishListItem extends React.Component {
 
   renderButtonView() {
     const { mouseOn } = this.state;
+    const { product, remove } = this.props;
     if (mouseOn) {
       return (
         <ButtonWrapper>
-          <Button>
+          <Button
+            onClick={(e) => {
+              remove(product);
+              e.preventDefault();
+            }}
+          >
             Remove
           </Button>
         </ButtonWrapper>
@@ -116,6 +122,7 @@ WishListItem.propTypes = {
     variations: PropTypes.arrayOf(PropTypes.object),
     relatedProductIds: PropTypes.arrayOf(PropTypes.number),
   }).isRequired,
+  remove: PropTypes.func.isRequired,
 };
 
 export default WishListItem;
