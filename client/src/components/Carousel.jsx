@@ -21,12 +21,41 @@ const ProductContainer = styled.div`
 `;
 
 const Carousel = (props) => {
-  const { products, index } = props;
+  const {
+    products,
+    index,
+    wishList,
+    addToWishList,
+  } = props;
   return (
     <div>
       <ViewPort>
         <ProductContainer index={index}>
-          {products.map((product) => <Product key={product._id} product={product} />)}
+          {products.map((product) => {
+            // check if product is included in the wishlist and pass
+            // this information down for the wishlist button component
+            let inWishList = false;
+
+            // since wishlist is coming from a separate database,
+            // these products are not stricly equal. Therefore,
+            // we must run a loop to compare id's
+            wishList.forEach((item) => {
+              if (item._id === product._id) {
+                inWishList = true;
+                // eslint-disable-next-line no-useless-return
+                return;
+              }
+            });
+
+            return (
+              <Product
+                key={product._id}
+                product={product}
+                inWishList={inWishList}
+                addToWishList={addToWishList}
+              />
+            );
+          })}
         </ProductContainer>
       </ViewPort>
     </div>
@@ -36,6 +65,8 @@ const Carousel = (props) => {
 Carousel.propTypes = {
   products: PropTypes.arrayOf(PropTypes.object).isRequired,
   index: PropTypes.number.isRequired,
+  wishList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  addToWishList: PropTypes.func.isRequired,
 };
 
 export default Carousel;

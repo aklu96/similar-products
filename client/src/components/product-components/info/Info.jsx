@@ -12,6 +12,7 @@ const Name = styled.div`
   font-family: Roboto, sans-serif;
   font-weight: 500;
   font-size: 14px;
+  width: 280px;
 `;
 
 const Price = styled.div`

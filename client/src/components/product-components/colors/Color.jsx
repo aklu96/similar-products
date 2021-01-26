@@ -11,6 +11,7 @@ const Wrapper = styled.div`
   border-radius: 50%;
   background: ${(props) => props.color};
   margin: auto;
+  cursor: pointer;
 `;
 
 const Color = (props) => {

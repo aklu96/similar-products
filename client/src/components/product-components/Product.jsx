@@ -8,14 +8,12 @@ import ColorContainer from './colors/ColorContainer';
 // This file contains both the Product and Image components
 // This is because the Image should expand when the Product component is hovered over
 // It's unclear to me how to achieve this with styled components in separate files
-// For now, I'll achieve this functionality by having both components defined in this file
-// The Image file is left as a standalone file, but is unused
+// I'll achieve this functionality by having both components defined in this file
 
 const ProductWrapper = styled.div`
-  height: 425px;
+  height: 420px;
   width: 300px;
   padding: 10px;
-  cursor: pointer;
 `;
 
 const ImageWrapper = styled.div`
@@ -92,7 +90,7 @@ class Product extends React.Component {
   }
 
   renderBottomView() {
-    const { product } = this.props;
+    const { inWishList, addToWishList, product } = this.props;
     const { currentVariation, mouseOn } = this.state;
 
     // show the available colors when mouse hovers over component
@@ -102,6 +100,9 @@ class Product extends React.Component {
           variations={product.variations}
           currentVariation={currentVariation}
           changeVariation={this.changeVariation}
+          inWishList={inWishList}
+          addToWishList={addToWishList}
+          product={product}
         />
       );
     }
@@ -145,6 +146,8 @@ Product.propTypes = {
     variations: PropTypes.arrayOf(PropTypes.object),
     relatedProductIds: PropTypes.arrayOf(PropTypes.number),
   }).isRequired,
+  inWishList: PropTypes.bool.isRequired,
+  addToWishList: PropTypes.func.isRequired,
 };
 
 export default Product;

@@ -1,44 +1,69 @@
+/* eslint-disable no-console */
 import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import Carousel from './Carousel';
-import LeftArrow from './LeftArrow';
-import RightArrow from './RightArrow';
+import LeftArrow from './arrows/LeftArrow';
+import RightArrow from './arrows/RightArrow';
+import WishList from './wishlist/WishList';
+
+const AppWrapper = styled.div`
+  width: 100vw;
+  overflow: hidden;
+`;
 
 const Title = styled.h2`
   font-family: Roboto, sans-serif;
   font-weight: 700;
   padding: 15px 30px;
+  position: relative;
 `;
 
 const CarouselContainer = styled.div`
   display: flex;
   width: 100vw;
   height: 425px;
+  position: relative;
 `;
 
 class App extends React.Component {
   constructor() {
     super();
 
+    // set product id to your choice between 1 - 100
     this.state = {
+      productId: 96,
       products: [],
       carouselIndex: 0,
       productTracker: 0,
       leftArrow: false,
       rightArrow: true,
+      wishList: [],
     };
 
     this.onLeftArrowClick = this.onLeftArrowClick.bind(this);
     this.onRightArrowClick = this.onRightArrowClick.bind(this);
+    this.addToWishList = this.addToWishList.bind(this);
+    this.removeFromWishList = this.removeFromWishList.bind(this);
   }
 
   componentDidMount() {
-    axios.get('/api/products/96')
+    const { productId } = this.state;
+    let products;
+
+    axios.get(`http://localhost:3000/api/products/${productId}`)
+      .then((res) => {
+        products = res.data;
+      })
+      .then(() => axios.get(`http://localhost:3000/api/wishlist/${productId}`))
       .then((res) => {
         this.setState({
-          products: res.data,
+          products,
+          wishList: res.data.products,
         });
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }
 
@@ -100,6 +125,49 @@ class App extends React.Component {
     });
   }
 
+  // this method adds a product to the wishlist database
+  // and re-renders the wishlist component upon successful post request
+  addToWishList(product) {
+    const { productId, wishList } = this.state;
+    wishList.push(product);
+    const update = {
+      _id: productId,
+      products: wishList,
+    };
+
+    axios.post(`http://localhost:3000/api/wishlist/${productId}`, update)
+      .then((res) => {
+        console.log(res.data);
+        this.setState({
+          wishList: res.data.products,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  // this method removes a product from the wishlist database
+  // and re-renders the wishlist component upon successful post request
+  removeFromWishList(product) {
+    const { productId, wishList } = this.state;
+    wishList.splice(wishList.indexOf(product), 1);
+    const update = {
+      _id: productId,
+      products: wishList,
+    };
+
+    axios.post(`http://localhost:3000/api/wishlist/${productId}`, update)
+      .then((res) => {
+        this.setState({
+          wishList: res.data.products,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   renderLeftArrow() {
     const { leftArrow } = this.state;
     if (leftArrow) {
@@ -117,16 +185,23 @@ class App extends React.Component {
   }
 
   render() {
-    const { products, carouselIndex } = this.state;
+    const { products, carouselIndex, wishList } = this.state;
     return (
-      <div>
+      <AppWrapper>
         <Title>Similar to this Product</Title>
         <CarouselContainer>
           {this.renderLeftArrow()}
-          <Carousel products={products} index={carouselIndex} />
+          <Carousel
+            products={products}
+            index={carouselIndex}
+            wishList={wishList}
+            addToWishList={this.addToWishList}
+          />
           {this.renderRightArrow()}
         </CarouselContainer>
-      </div>
+        <Title>Wish List</Title>
+        <WishList wishList={wishList} remove={this.removeFromWishList} />
+      </AppWrapper>
     );
   }
 }
