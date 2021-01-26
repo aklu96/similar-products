@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Carousel from './Carousel';
 import LeftArrow from './arrows/LeftArrow';
 import RightArrow from './arrows/RightArrow';
-import WishList from './WishList';
+import WishList from './wishlist/WishList';
 
 const AppWrapper = styled.div`
   width: 100vw;
