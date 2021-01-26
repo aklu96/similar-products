@@ -14,9 +14,9 @@ const Button = styled.button`
 `;
 
 const WishListButton = () => (
-    <Button>
-      Add to Wish List
-    </Button>
+  <Button>
+    Add to Wish List
+  </Button>
 );
 
 export default WishListButton;

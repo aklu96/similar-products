@@ -9,10 +9,29 @@ const Wrapper = styled.div`
   padding-left: 20px;
 `;
 
+const BottomWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 280px;
+  height: 60px;
+`;
+
+const BottomLeftWrapper = styled.div`
+  width: 80px;
+  height: 60px;
+`;
+
+const ButtonWrapper = styled.div`
+  padding-top: 15px;
+  padding-right: 10px;
+`;
+
 const Name = styled.div`
   font-family: Roboto, sans-serif;
   font-weight: 500;
   font-size: 14px;
+  width: 280px;
+  height: 32px;
 `;
 
 const Price = styled.div`
@@ -34,12 +53,19 @@ const Info = (props) => {
   return (
     <Wrapper>
       <Name>{product.name}</Name>
-      <Price>{product.price}</Price>
-      {renderImpacts(product.impacts)}
-      <Colors>
-        <span>{product.num_colors}</span>
-        <span> colors</span>
-      </Colors>
+      <BottomWrapper>
+        <BottomLeftWrapper>
+          <Price>{product.price}</Price>
+          {renderImpacts(product.impacts)}
+          <Colors>
+            <span>{product.num_colors}</span>
+            <span> colors</span>
+          </Colors>
+        </BottomLeftWrapper>
+        <ButtonWrapper>
+          <WishListButton />
+        </ButtonWrapper>
+      </BottomWrapper>
     </Wrapper>
   );
 };
