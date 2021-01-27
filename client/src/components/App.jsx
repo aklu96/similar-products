@@ -7,6 +7,10 @@ import LeftArrow from './arrows/LeftArrow';
 import RightArrow from './arrows/RightArrow';
 import WishList from './wishlist/WishList';
 
+const PORT = 3002;
+// set product id to your choice between 1 - 100
+const productId = 96;
+
 const AppWrapper = styled.div`
   width: 100vw;
   overflow: hidden;
@@ -30,9 +34,7 @@ class App extends React.Component {
   constructor() {
     super();
 
-    // set product id to your choice between 1 - 100
     this.state = {
-      productId: 96,
       products: [],
       carouselIndex: 0,
       productTracker: 0,
@@ -48,14 +50,13 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const { productId } = this.state;
     let products;
 
-    axios.get(`http://localhost:3000/api/products/${productId}`)
+    axios.get(`http://localhost:${PORT}/api/products/${productId}`)
       .then((res) => {
         products = res.data;
       })
-      .then(() => axios.get(`http://localhost:3000/api/wishlist/${productId}`))
+      .then(() => axios.get(`http://localhost:${PORT}/api/wishlist/${productId}`))
       .then((res) => {
         this.setState({
           products,
@@ -128,14 +129,14 @@ class App extends React.Component {
   // this method adds a product to the wishlist database
   // and re-renders the wishlist component upon successful post request
   addToWishList(product) {
-    const { productId, wishList } = this.state;
+    const { wishList } = this.state;
     wishList.push(product);
     const update = {
       _id: productId,
       products: wishList,
     };
 
-    axios.post(`http://localhost:3000/api/wishlist/${productId}`, update)
+    axios.post(`http://localhost:${PORT}/api/wishlist/${productId}`, update)
       .then((res) => {
         console.log(res.data);
         this.setState({
@@ -150,14 +151,14 @@ class App extends React.Component {
   // this method removes a product from the wishlist database
   // and re-renders the wishlist component upon successful post request
   removeFromWishList(product) {
-    const { productId, wishList } = this.state;
+    const { wishList } = this.state;
     wishList.splice(wishList.indexOf(product), 1);
     const update = {
       _id: productId,
       products: wishList,
     };
 
-    axios.post(`http://localhost:3000/api/wishlist/${productId}`, update)
+    axios.post(`http://localhost:${PORT}/api/wishlist/${productId}`, update)
       .then((res) => {
         this.setState({
           wishList: res.data.products,

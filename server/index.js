@@ -5,7 +5,7 @@ const dbConnect = require('../database/dbConnect.js');
 const controller = require('./controller.js');
 
 // server setup
-const PORT = 3000;
+const PORT = 3002;
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -24,5 +24,5 @@ app.get('/api/wishlist/:productId', controller.getWishList);
 app.post('/api/wishlist/:productId', controller.updateWishList);
 
 app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}...`);
+  console.log(`Similar products server running on port ${PORT}...`);
 });
