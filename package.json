@@ -10,6 +10,7 @@
   "scripts": {
     "start": "nodemon server",
     "react-dev": "webpack -w",
+    "build": "webpack",
     "test": "jest",
     "db:setup": "node database/seedProducts.js && node database/seedWishList.js"
   },
