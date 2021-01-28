@@ -7,7 +7,7 @@ import LeftArrow from './arrows/LeftArrow';
 import RightArrow from './arrows/RightArrow';
 import WishList from './wishlist/WishList';
 
-const PORT = 3002;
+const PORT = 3000;
 // set product id to your choice between 1 - 100
 const productId = 96;
 
@@ -138,7 +138,6 @@ class App extends React.Component {
 
     axios.post(`http://localhost:${PORT}/api/wishlist/${productId}`, update)
       .then((res) => {
-        console.log(res.data);
         this.setState({
           wishList: res.data.products,
         });

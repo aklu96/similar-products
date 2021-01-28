@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 const express = require('express');
+const morgan = require('morgan');
 const cors = require('cors');
 const dbConnect = require('../database/dbConnect.js');
 const controller = require('./controller.js');
@@ -7,6 +8,7 @@ const controller = require('./controller.js');
 // server setup
 const PORT = 3002;
 const app = express();
+app.use(morgan('dev'));
 app.use(cors());
 app.use(express.json());
 app.use(express.static(`${__dirname}/../public`));
