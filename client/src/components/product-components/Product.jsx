@@ -11,7 +11,7 @@ import ColorContainer from './colors/ColorContainer';
 // I'll achieve this functionality by having both components defined in this file
 
 const ProductWrapper = styled.div`
-  height: 420px;
+  height: 425px;
   width: 300px;
   padding: 10px;
 `;

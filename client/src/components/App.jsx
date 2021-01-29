@@ -7,7 +7,6 @@ import LeftArrow from './arrows/LeftArrow';
 import RightArrow from './arrows/RightArrow';
 import WishList from './wishlist/WishList';
 
-const PORT = 3000;
 // set product id to your choice between 1 - 100
 const productId = 96;
 
@@ -28,6 +27,10 @@ const CarouselContainer = styled.div`
   width: 100vw;
   height: 425px;
   position: relative;
+`;
+
+const AppBarrier = styled.div`
+  height: 10px;
 `;
 
 class App extends React.Component {
@@ -52,11 +55,11 @@ class App extends React.Component {
   componentDidMount() {
     let products;
 
-    axios.get(`http://localhost:${PORT}/api/products/${productId}`)
+    axios.get(`/api/products/${productId}`)
       .then((res) => {
         products = res.data;
       })
-      .then(() => axios.get(`http://localhost:${PORT}/api/wishlist/${productId}`))
+      .then(() => axios.get(`/api/wishlist/${productId}`))
       .then((res) => {
         this.setState({
           products,
@@ -136,7 +139,7 @@ class App extends React.Component {
       products: wishList,
     };
 
-    axios.post(`http://localhost:${PORT}/api/wishlist/${productId}`, update)
+    axios.post(`/api/wishlist/${productId}`, update)
       .then((res) => {
         this.setState({
           wishList: res.data.products,
@@ -157,7 +160,7 @@ class App extends React.Component {
       products: wishList,
     };
 
-    axios.post(`http://localhost:${PORT}/api/wishlist/${productId}`, update)
+    axios.post(`/api/wishlist/${productId}`, update)
       .then((res) => {
         this.setState({
           wishList: res.data.products,
@@ -184,6 +187,19 @@ class App extends React.Component {
     return null;
   }
 
+  renderWishList() {
+    const { wishList } = this.state;
+    if (wishList.length !== 0) {
+      return (
+        <div>
+          <Title>Wish List</Title>
+          <WishList wishList={wishList} remove={this.removeFromWishList} />
+        </div>
+      );
+    }
+    return null;
+  }
+
   render() {
     const { products, carouselIndex, wishList } = this.state;
     return (
@@ -199,8 +215,8 @@ class App extends React.Component {
           />
           {this.renderRightArrow()}
         </CarouselContainer>
-        <Title>Wish List</Title>
-        <WishList wishList={wishList} remove={this.removeFromWishList} />
+        {this.renderWishList()}
+        <AppBarrier />
       </AppWrapper>
     );
   }
