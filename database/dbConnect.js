@@ -5,7 +5,7 @@
 const mongoose = require('mongoose');
 
 const dbConnect = () => {
-  mongoose.connect('mongodb://localhost/fjords', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
+  mongoose.connect('mongodb://database/fjords', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 };
 
 module.exports = dbConnect;

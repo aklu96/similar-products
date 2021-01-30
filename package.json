@@ -12,7 +12,8 @@
     "react-dev": "webpack -w",
     "build": "webpack",
     "test": "jest",
-    "db:setup": "node database/seedProducts.js && node database/seedWishList.js"
+    "db:setup": "node database/seedProducts.js && node database/seedWishList.js",
+    "docker": "webpack & node database/seedProducts.js & node database/seedWishList.js & node server"
   },
   "dependencies": {
     "axios": "^0.21.1",
