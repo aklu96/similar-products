@@ -5,7 +5,7 @@ services:
     depends_on:
      - 'database'
     ports:
-     - '3002:3002'
+     - '80:3002'
 
   database:
     image: mongo:4.4.3
