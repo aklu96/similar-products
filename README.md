@@ -5,6 +5,10 @@ Recreation of Patagonia's Fjord Flannel Jacket item page featuring the selected 
 handled by ZC, AY, AK, and SB respectively. Project designed as a non-functional Full-stack application using Node.JS, React, and a simulated Mongo database.
 Implemented in a Service-Oriented Architecture.
 
+Similar Products module:
+
+<img src="fjords-jackets">
+
 Deployed with Docker & Linode: http://23.239.22.148
 
 ## Related Projects
