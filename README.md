@@ -7,7 +7,7 @@ Implemented in a Service-Oriented Architecture.
 
 Similar Products module:
 
-<img src="fjords-jackets">
+<img src="fjords-jackets.webp">
 
 Deployed with Docker & Linode: http://23.239.22.148
 
