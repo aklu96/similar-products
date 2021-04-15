@@ -23,9 +23,10 @@ From within the root directory:
 
 ```sh
 npm install
-npm docker
+npm run docker
 ```
 
 ## Dependencies
 
+Node.js
 MongoDB
