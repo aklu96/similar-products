@@ -23,8 +23,7 @@ From within the root directory:
 
 ```sh
 npm install
-npm build
-npm start
+npm docker
 ```
 
 ## Dependencies
